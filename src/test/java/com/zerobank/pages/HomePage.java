@@ -1,5 +1,6 @@
 package com.zerobank.pages;
 
+import com.zerobank.utilities.BrowserUtilities;
 import com.zerobank.utilities.ConfigurationReader;
 import com.zerobank.utilities.Driver;
 import org.openqa.selenium.By;
@@ -28,6 +29,7 @@ WebDriverWait wait=new  WebDriverWait(driver,15);
 
 
 public void clickSigninButton(){
+    BrowserUtilities.wait(1);
         signinButton.click();
 }
 

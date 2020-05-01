@@ -9,3 +9,6 @@ Feature:account summary page
     Then the user verifies page title is "Zero - Account Summary"
     And the user verifies Account summary page should have to following account types "Cash Accounts, Investment Accounts, Credit Accounts, Loan Accounts"
     And the user verifies Credit Accounts table must have columns "Account Credit Card Balance"
+
+
+

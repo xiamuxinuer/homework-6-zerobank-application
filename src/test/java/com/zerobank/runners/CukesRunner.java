@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
         features = "src\\test\\resources\\features",
         dryRun = false,
         strict = true,
-        tags  ="@PayBillsPage",
+        tags  ="@AccountActivity",
         plugin = {"html:target\\default-report",
                 "json:target\\cucumber.json"}
 

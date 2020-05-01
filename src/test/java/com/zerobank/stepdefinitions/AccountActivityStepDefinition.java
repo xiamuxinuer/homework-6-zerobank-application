@@ -12,17 +12,19 @@ public class AccountActivityStepDefinition {
 
     @When("the user clicks {string}")
     public void the_user_clicks(String string) {
+        System.out.println("user clicks on :" +string +" link");
         accountActivityPage.navigateTo(string);
     }
 
     @Then("the user verifies Account drop down default option should be {string}")
     public void the_user_verifies_Account_drop_down_default_option_should_be(String string) {
+        System.out.println("user veriyies account drop down option shoule be : " +string);
 
         Assert.assertEquals(string,accountActivityPage.getSelectedOption());
     }
     @Then("the user verifies Account drop down should have the following options:{string}")
     public void the_user_verifiesAccount_drop_down_should_have_the_following_options(String string) {
-
+        System.out.println("user verify account drop down should have following options: "+string);
         Assert.assertEquals(string,accountActivityPage.getAllOptions());
 
     }
