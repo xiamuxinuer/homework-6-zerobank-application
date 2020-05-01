@@ -31,7 +31,7 @@ public class LoginStepDefinition {
     @Then("the user verifies page title is {string}")
     public void the_user_verifies_page_title_is(String string) {
         System.out.println("verify pate title is : "+string);
-        Assert.assertEquals(Driver.getDriver().getTitle(),string);
+        Assert.assertEquals(string,Driver.getDriver().getTitle());
     }
 
 

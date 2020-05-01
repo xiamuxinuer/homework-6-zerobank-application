@@ -2,6 +2,7 @@ package com.zerobank.pages;
 
 import com.zerobank.utilities.ConfigurationReader;
 import com.zerobank.utilities.Driver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,6 +21,7 @@ WebDriverWait wait=new  WebDriverWait(driver,15);
 
 
 
+
     public HomePage(){
         PageFactory.initElements(driver,this);
     }
@@ -28,6 +30,12 @@ WebDriverWait wait=new  WebDriverWait(driver,15);
 public void clickSigninButton(){
         signinButton.click();
 }
+
+
+public void navigateTo(String pageName){
+        driver.findElement(By.linkText(pageName)).click();
+}
+
 
 
 }
