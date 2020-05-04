@@ -58,6 +58,45 @@ public class PayBillsPage extends HomePage {
     @FindBy(id="alert_content")
     protected WebElement alertMessage;
 
+//id="pc_currency"
+    @FindBy(id="pc_currency")
+    protected  WebElement currencyOption;
+
+ //id="pc_amount"
+
+ @FindBy(id="pc_amount")
+ protected WebElement amountInput;
+//id="pc_calculate_costs"
+
+    @FindBy(id="pc_calculate_costs")
+    protected WebElement calculateButton;
+
+
+    public void clickCalculate(){
+        calculateButton.click();
+        BrowserUtilities.wait(2);
+    }
+   public void enterAmount(String string){
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("pc_amount")));
+        BrowserUtilities.wait(1);
+       amountInput.sendKeys(string);
+       BrowserUtilities.wait(1);
+   }
+
+ public String getPopUpAlert(){
+       return driver.switchTo().alert().getText();
+ }
+
+
+public List<String> getCurrencyOptions(){
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("pc_currency")));
+    BrowserUtilities.waitForPageToLoad(10);
+    Select select=new Select(currencyOption);
+    return BrowserUtilities.getTextFromWebElements(select.getOptions());
+}
+
+
+
     public void enterPayeeName(String name){
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("np_new_payee_name")));
@@ -90,9 +129,9 @@ public String getAlertMessage(){
 }
 
     public String getValidationMessage(){
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id ( "alert_content")));
+
         BrowserUtilities.wait(1);
-        return element.getAttribute("validationMessage");
+        return date.getAttribute("validationMessage");
     }
 
 

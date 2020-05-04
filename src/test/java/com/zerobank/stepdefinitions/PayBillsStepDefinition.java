@@ -4,6 +4,7 @@ import com.zerobank.pages.PayBillsPage;
 import com.zerobank.utilities.BrowserUtilities;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
 
 import java.util.List;
@@ -79,5 +80,34 @@ public class PayBillsStepDefinition {
     public void message(String string) {
        Assert.assertEquals(string,payBillsPage.getAlertMessage());
     }
+
+    @Then("following currencies should be available")
+    public void following_currencies_should_be_available(List<String> strings) {
+
+      Assert.assertTrue(payBillsPage.getCurrencyOptions().containsAll(strings));
+    }
+
+
+    @When("user tries to calculate cost without selecting a currency")
+    public void user_tries_to_calculate_cost_without_selecting_a_currency() {
+
+        payBillsPage.enterAmount("500");
+        payBillsPage.clickCalculate();
+
+    }
+
+//    @Then("error message should be displayed")
+//    public void error_message_should_be_displayed() {
+//       //Assert.assertFalse(payBillsPage.getPopUpAlert().isEmpty());
+//    }
+
+    @Then("error message should be displayed {string}")
+    public void error_message_should_be_displayed(String string) {
+
+        Assert.assertEquals(string,payBillsPage.getPopUpAlert());
+
+
+    }
+
 
 }

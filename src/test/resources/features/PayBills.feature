@@ -30,4 +30,4 @@ Feature:pay bills page
      |Amount      |Description|
      |500         |zero payment|
     Then the user clicks pay button
-    And the user verifies warning message message "Please fill out this field message."
+    And the user verifies warning message message "Please fill out this field."
