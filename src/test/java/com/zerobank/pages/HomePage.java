@@ -35,6 +35,7 @@ public void clickSigninButton(){
 
 
 public void navigateTo(String pageName){
+        BrowserUtilities.wait(1);
         driver.findElement(By.linkText(pageName)).click();
 }
 
