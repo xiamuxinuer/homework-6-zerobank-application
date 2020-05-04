@@ -1,11 +1,16 @@
 package com.zerobank.pages;
 
 import com.zerobank.utilities.BrowserUtilities;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
+import java.util.Map;
 
 public class PayBillsPage extends HomePage {
      @FindBy(id="pay_saved_payees")
@@ -27,6 +32,68 @@ public class PayBillsPage extends HomePage {
     @FindBy(id="sp_description")
     protected  WebElement description;
 
+    @FindBy(id = "alert_content")
+    protected  WebElement element;
+
+//[id="np_new_payee_name"]
+    @FindBy(id="np_new_payee_name")
+    protected WebElement payeeNameInput;
+ //id="np_new_payee_address"
+    @FindBy(id="np_new_payee_address")
+    protected WebElement payeeAddressInput;
+
+//id="np_new_payee_account"
+    @FindBy(id="np_new_payee_account")
+    protected WebElement payeeAccountInput;
+    //id="np_new_payee_details"
+    @FindBy(id="np_new_payee_details")
+    protected WebElement payeeDetails;
+
+    //id="add_new_payee"
+    @FindBy(id="add_new_payee")
+    protected WebElement addButton;
+
+    //id="alert_content"
+
+    @FindBy(id="alert_content")
+    protected WebElement alertMessage;
+
+    public void enterPayeeName(String name){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("np_new_payee_name")));
+        payeeNameInput.sendKeys(name);
+    }
+
+
+    public void enterPayeeAddress(String address){
+        BrowserUtilities.waitForPageToLoad(10);
+        payeeAddressInput.sendKeys(address);
+    }
+
+    public void enterPayeeAccount(String account){
+        BrowserUtilities.waitForPageToLoad(10);
+        payeeAccountInput.sendKeys(account);
+    }
+
+public void enterPayeeDetails(String details){
+    BrowserUtilities.waitForPageToLoad(10);
+    payeeDetails.sendKeys(details);
+}
+public void clickAddButton(){
+        addButton.click();
+        BrowserUtilities.wait(2);
+}
+public String getAlertMessage(){
+        BrowserUtilities.waitForPageToLoad(10);
+
+        return alertMessage.getText();
+}
+
+    public String getValidationMessage(){
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id ( "alert_content")));
+        BrowserUtilities.wait(1);
+        return element.getAttribute("validationMessage");
+    }
 
 
     public void setPayeeOption(String string){
@@ -58,11 +125,16 @@ public class PayBillsPage extends HomePage {
 public void clickPayButton(){
     BrowserUtilities.wait(1);
         payButton.click();
+    BrowserUtilities.wait(1);
 }
 
 public String getPaymentMessage(){
         BrowserUtilities.waitForPageToLoad(10);
         return paymentCompletedMessage.getText().trim();
 }
+
+
+
+
 
 }

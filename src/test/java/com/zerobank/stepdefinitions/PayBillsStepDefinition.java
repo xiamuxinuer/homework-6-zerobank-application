@@ -1,6 +1,8 @@
 package com.zerobank.stepdefinitions;
 
 import com.zerobank.pages.PayBillsPage;
+import com.zerobank.utilities.BrowserUtilities;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 
@@ -34,7 +36,7 @@ public class PayBillsStepDefinition {
        payBillsPage.enterDescription(dataTable.get(0).get("Description"));
     }
 
-    @Then("the user cliks pay button")
+    @Then("the user clicks pay button")
     public void the_user_cliks_pay_button() {
         System.out.println("click submit");
         payBillsPage.clickPayButton();
@@ -47,6 +49,35 @@ public class PayBillsStepDefinition {
     }
 
 
+    @Then("the user verifies warning message message {string}")
+    public void the_user_verifies_warning_message_message(String string) {
+        BrowserUtilities.wait(1);
+        System.out.println("verifies warning message: "+string);
+        Assert.assertEquals(string,payBillsPage.getValidationMessage());
+    }
 
+    @Then("the user enters amount and description:")
+    public void the_user_enters_amount_and_description(List<Map<String,String>> dataTable) {
+        System.out.println("user enters amount and description");
+        payBillsPage.enterPayment(dataTable.get(0).get("Amount"));
+        payBillsPage.enterDescription(dataTable.get(0).get("Description"));
+    }
+
+    @Given("creates new payee using following information")
+    public void creates_new_payee_using_following_information(List<Map<String,String>> dataTable) {
+        payBillsPage.enterPayeeName(dataTable.get(0).get("Payee Name"));
+        payBillsPage.enterPayeeAddress(dataTable.get(0).get("Payee Address"));
+        payBillsPage.enterPayeeAccount(dataTable.get(0).get("Account"));
+        payBillsPage.enterPayeeDetails(dataTable.get(0).get("Payee details"));
+    }
+    @Then("user clicks Add button")
+    public void user_clicks_Add_button() {
+       payBillsPage.clickAddButton();
+    }
+
+    @Then("message {string}")
+    public void message(String string) {
+       Assert.assertEquals(string,payBillsPage.getAlertMessage());
+    }
 
 }

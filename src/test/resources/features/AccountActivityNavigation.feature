@@ -19,6 +19,8 @@ Feature:account activity page
   |Deposit|
   |Withdrawal|
 
+
+
 @BrokerageLink
   Scenario: Brokerage account redirect
     Given the user is logged in
